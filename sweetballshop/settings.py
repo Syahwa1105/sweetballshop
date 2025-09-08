@@ -31,7 +31,7 @@ PRODUCTION = os.getenv('PRODUCTION', 'False').lower() == 'true'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "https://pbp.cs.ui.ac.id/qoriana.syahwa/sweetballshop"] #link pws
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "qoriana-syahwa-sweetballshop.pbp.cs.ui.ac.id"] #link pws
 
 
 
