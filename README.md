@@ -1,6 +1,3 @@
-Nama : Qoriana Syahwa Maharani
-NPM : 2406437533
-Kelas : PBP-B
 Tugas 2 PBP - Implementasi Model-View-Template (MVT) pada Django  
 
 Nama Project : Sweetball Shop
