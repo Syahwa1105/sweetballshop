@@ -5,7 +5,7 @@ Tugas 2 PBP - Implementasi Model-View-Template (MVT) pada Django
 
 Nama Project : Sweetball Shop
 
-Link PWS : https://pbp.cs.ui.ac.id/qoriana.syahwa/sweetballshop
+Link PWS : https://qoriana-syahwa-sweetballshop.pbp.cs.ui.ac.id/
 
 
 1.Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial). 
