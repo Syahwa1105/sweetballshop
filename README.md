@@ -58,9 +58,9 @@ Menurut saya Django dipilih untuk dijadikan pembelajaran Utama, karena:
 **6. Apakah ada feedback untuk asisten dosen tutorial 1 yang telah kamu kerjakan sebelumnya?**
 menurut saya penjelasan asdos di tutorial 1 sudah sangat membantu untuk menyelesaikan tugas individu 2 ini dan penjelasan yang diberikan juga sangat jelas untuk dipahami dan sangat membantu di tugas individu 2 ini.
 
-## **TUGAS 3 PBP** 
-Nama: Qoriana Syahwa Maharani
-NPM: 2406437533
+## **TUGAS 3 PBP - Implementasi Form dan Data Delivery pada Django** 
+Nama: Qoriana Syahwa Maharani <br>
+NPM: 2406437533<br>
 Kelas: PBP-B 
 
 **1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?**
