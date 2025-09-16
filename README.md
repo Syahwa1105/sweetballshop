@@ -1,8 +1,8 @@
-Nama: Qoriana Syahwa Maharani.
-NPM: 2406437533.
+Nama: Qoriana Syahwa Maharani. <br>
+NPM: 2406437533. <br>
 Kelas: PBP-B.
 
--**Nama Project : Sweetball Shop**
+-**Nama Project : Sweetball Shop**<br>
 -**Link PWS : https://qoriana-syahwa-sweetballshop.pbp.cs.ui.ac.id/**
 
 
