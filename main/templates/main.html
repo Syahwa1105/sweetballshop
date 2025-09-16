@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+
+{% block title %}SweetBall Shop{% endblock %}
+
+{% block content %}
 <h1>SweetBall Shop</h1>
 
 <h5>NPM:</h5>
@@ -8,3 +13,40 @@
 
 <h5>Kelas:</h5>
 <p>{{ kelas }}</p>
+
+<hr>
+
+<a href="{% url 'main:add_product' %}">
+    <button>+ Add Product</button>
+</a>
+<hr>
+
+{% if not products %}
+    <p>Belum ada product.</p>
+{% else %}
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Featured</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in products %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ p.name }}</td>
+                <td>{{ p.price }}</td>
+                <td>{{ p.category }}</td>
+                <td>{{ p.is_featured }}</td>
+                <td><a href="{% url 'main:product_detail' p.pk %}">Detail</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block meta %}
+<title>Add Product - SweetBall Shop</title>
+{% endblock meta %}
+
+{% block content %}
+<header>
+    <h1>SweetBall Shop</h1>
+    <p>NPM: 2406437533 | Nama: Qoriana Syahwa Maharani | Kelas: PBP-B</p>
+    <hr>
+</header>
+
+<h2>Add Product</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<hr>
+<a href="{% url 'main:show_main' %}">⬅ Back to Home</a>
+
+<footer>
+    <hr>
+    <p>© 2025 SweetBall Shop</p>
+</footer>
+{% endblock content %}
