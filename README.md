@@ -1,10 +1,12 @@
+Nama: Qoriana Syahwa Maharani
+NPM: 2406437533
+Kelas: PBP-B
+
+**Nama Project : Sweetball Shop**
+**Link PWS : https://qoriana-syahwa-sweetballshop.pbp.cs.ui.ac.id/**
+
+
 ## **Tugas 2 PBP - Implementasi Model-View-Template (MVT) pada Django**  
-
-Nama Project : Sweetball Shop
-
-Link PWS : https://qoriana-syahwa-sweetballshop.pbp.cs.ui.ac.id/
-
-
 **1.Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
 - Membuat proyek baru  
 pertama saya membuat folder proyek sweetballshop lalu mengaktifkan virtual environment. Setelah itu saya install Django dan membuat proyek baru dengan nama yang sama.
@@ -60,8 +62,6 @@ menurut saya penjelasan asdos di tutorial 1 sudah sangat membantu untuk menyeles
 Nama: Qoriana Syahwa Maharani
 NPM: 2406437533
 Kelas: PBP-B 
-
-link PWS:
 
 **1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?**
 Data delivery itu penting karena aplikasi web sering membutuhkan untuk bertukar data, bukan hanya menampilkan halaman HTML. Misalnya pada aplikasi frontend (React, Flutter, dsb) perlu ambil data dari backend dalam format tertentu (JSON atau XML). Dengan adanya data delivery, sistem bisa saling komunikasi dengan rapi, konsisten, dan mudah dipakai ulang oleh aplikasi lain.
