@@ -1,9 +1,9 @@
-Nama: Qoriana Syahwa Maharani
-NPM: 2406437533
-Kelas: PBP-B
+Nama: Qoriana Syahwa Maharani.
+NPM: 2406437533.
+Kelas: PBP-B.
 
-**Nama Project : Sweetball Shop**
-**Link PWS : https://qoriana-syahwa-sweetballshop.pbp.cs.ui.ac.id/**
+-**Nama Project : Sweetball Shop**
+-**Link PWS : https://qoriana-syahwa-sweetballshop.pbp.cs.ui.ac.id/**
 
 
 ## **Tugas 2 PBP - Implementasi Model-View-Template (MVT) pada Django**  
