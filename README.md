@@ -83,9 +83,9 @@ csrf_token adalah token keamanan yang mencegah serangan CSRF (Cross Site Request
 1. Membuat file forms.py dan menambahkan ProductForm untuk input produk baru.
 
 2. Menambahkan beberapa fungsi view di views.py:
-- add_product → menambah produk baru lewat form.
-- product_detail → menampilkan detail dari produk tertentu.
-- products_json, products_xml, product_json_by_id, product_xml_by_id → untuk data delivery (JSON dan XML).
+- add_product untuk menambah produk baru lewat form.
+- product_detail untuk menampilkan detail dari produk tertentu.
+- products_json, products_xml, product_json_by_id, product_xml_by_id untuk data delivery (JSON dan XML).
 
 3. Mengatur routing di urls.py untuk menghubungkan setiap view dengan URL.
 
