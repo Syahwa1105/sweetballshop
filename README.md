@@ -109,5 +109,97 @@ Menurut saya penjelasan asdos di tutorial 2 sudah cukup jelas dan membantu, teru
 ![json pk](https://github.com/user-attachments/assets/8adf62b1-4fe6-4729-a6c5-75a2c4e208d5)
 ![xml pk](https://github.com/user-attachments/assets/d6cc8bb4-ab2e-43a8-8433-43f449e8baa1)
 
+## **Tugas 4 PBP - Implementasi Autentikasi, Session, dan Cookies pada Django**
+
+**1. Apa itu Django AuthenticationForm? Jelaskan juga kelebihan dan kekurangannya.**
+
+AuthenticationForm adalah form bawaan Django yang sudah disediakan khusus untuk menangani proses login. Form ini akan secara otomatis mencocokkan input username dan password yang dimasukkan oleh pengguna dengan data yang tersimpan di database.
+
+Kelebihan:
+- Tidak perlu membuat form login dari nol, sehingga lebih praktis.
+- Sudah terintegrasi dengan sistem autentikasi Django, jadi lebih aman dan minim bug.
+- Validasi input seperti format username dan kesesuaian password dilakukan otomatis.
+
+Kekurangan:
+- Tampilan form masih sangat sederhana sehingga biasanya perlu di-custom agar lebih sesuai dengan desain aplikasi.
+- Form ini hanya mendukung login dasar dengan username dan password. Jika ingin menambahkan metode login lain (misalnya login dengan email atau OTP), maka perlu membuat form kustom tambahan.
+
+**2.Apa perbedaan antara autentikasi dan otorisasi? Bagaiamana Django mengimplementasikan kedua konsep tersebut?**
+
+- Autentikasi adalah proses memverifikasi identitas pengguna. Contoh paling umum adalah login dengan username dan password. Kalau data cocok dengan database, maka pengguna dianggap valid.
+
+- Otorisasi adalah proses untuk menentukan apa yang boleh atau tidak boleh dilakukan oleh pengguna setelah mereka terautentikasi. Misalnya, pengguna biasa hanya bisa menambah produk, tetapi admin bisa menghapus produk.
+
+Django mengimplementasikan nya:
+- Autentikasi dilakukan menggunakan model User, fungsi authenticate() dan login(), serta form bawaan seperti AuthenticationForm.
+
+- Otorisasi diatur menggunakan sistem permission (is_staff, is_superuser), middleware, dan decorator seperti @login_required atau @permission_required untuk membatasi akses pada view tertentu.
+
+**3.Apa saja kelebihan dan kekurangan session dan cookies dalam konteks menyimpan state di aplikasi web?**
+
+**Session: 
+
+- Kelebihan: data disimpan di server, sehingga lebih aman untuk menyimpan informasi penting. Kapasitas juga lebih besar dibanding cookies.
+
+- Kekurangan: membutuhkan ruang penyimpanan di server, sehingga semakin banyak pengguna bisa menambah beban server.
+
+**Cookies: 
+
+- Kelebihan: mudah digunakan, bisa menyimpan data kecil langsung di browser, dan data dapat bertahan walaupun browser ditutup.
+
+- Kekurangan: kapasitasnya terbatas (sekitar 4KB) dan rawan dimanipulasi karena disimpan di sisi client.
+
+**4.Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai? Bagaimana Django menangani hal tersebut?**
+
+Cookies tidak sepenuhnya aman secara default, karena data yang tersimpan di sisi client bisa saja dicuri atau dimanipulasi. Risiko yang sering muncul antara lain pencurian cookie (session hijacking) atau penyalahgunaan cookie lewat serangan XSS.
+
+Django punya mekanisme perlindungan bawaan, antara lain:
+
+- Memberikan atribut HttpOnly pada cookie sehingga tidak bisa diakses dengan JavaScript.
+
+- Cookie bisa dipaksa hanya dikirim lewat HTTPS dengan mengaktifkan SESSION_COOKIE_SECURE = True.
+
+- Django juga menambahkan proteksi CSRF token pada form, sehingga serangan request palsu bisa dicegah.
+
+Dengan fitur-fitur tersebut, risiko dari penggunaan cookies bisa diminimalisir.
+
+**5.Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+
+**Membuat fungsi dan form registrasi**
+Pertama, saya menambahkan fungsi register di views.py dengan memanfaatkan UserCreationForm bawaan Django. Fungsi ini memungkinkan pengguna untuk membuat akun baru. Jika berhasil, pengguna akan langsung diarahkan ke halaman login. Saya juga menambahkan template register.html untuk menampilkan form registrasi.
+
+**Membuat fungsi login dan logout**
+Kedua, saya menambahkan fungsi login_user yang menggunakan AuthenticationForm. Jika login berhasil, pengguna akan diarahkan ke halaman utama. Saya juga membuat fungsi logout_user yang akan menghapus sesi login dan menghapus cookie last_login.
+
+**Menambahkan proteksi dengan login_required**
+Agar halaman utama (show_main) hanya bisa diakses oleh pengguna yang sudah login, saya menambahkan decorator @login_required(login_url='/login'). Hal ini juga saya terapkan di beberapa fungsi lain seperti add_product dan product_detail.
+
+**Menghubungkan model Product dengan User**
+Setelah autentikasi dasar selesai, saya baru menambahkan field user = models.ForeignKey(User, on_delete=models.CASCADE, null=True) di dalam model Product. Dengan cara ini, setiap produk yang dibuat akan tercatat siapa pemiliknya.
+
+**Migrasi database**
+Saya menjalankan python manage.py makemigrations dan python manage.py migrate untuk memperbarui struktur database sesuai dengan perubahan model.
+
+**Menghubungkan produk dengan user saat ditambahkan**
+Pada fungsi add_product, saya memodifikasi kode agar produk baru otomatis mencatat pengguna yang sedang login (request.user) sebagai author.
+
+**Menampilkan informasi user dan cookie last_login**
+Di show_main, saya menambahkan context baru berupa request.user.username serta cookie last_login. Informasi ini saya tampilkan di halaman utama, sehingga pengguna bisa melihat siapa yang sedang login dan kapan terakhir kali login.
+
+**Menampilkan author di halaman detail produk**
+Pada template product_detail.html, saya menambahkan kode untuk menampilkan author dari produk. Jika tidak ada, maka ditampilkan “Anonymous”.
+
+**Membuat dua akun dengan dummy data**
+Saya membuat dua akun pengguna dan masing-masing saya isi dengan tiga produk dummy. Dengan ini saya bisa melihat bahwa data produk memang terikat dengan user yang membuatnya.
+- tampilan akun pertama yaitu LanyBallShop dan my articles di dalam nya (3 product berbeda) :
+  <img width="1920" height="1080" alt="Screenshot (56)" src="https://github.com/user-attachments/assets/4a2f2ee4-08f5-4e28-87bb-5ceb78d6798f" />
+
+- tampilan akun kedua yaitu cookieballshop dan my articles nya di dalam nya (3 product berbeda): 
+
+  <img width="1920" height="1080" alt="Screenshot (57)" src="https://github.com/user-attachments/assets/e6a674f6-beff-40c4-a526-b8e4815764b7" />
+
+**Commit dan push ke GitHub serta PWS**
+Setelah semua berfungsi dengan baik, saya melakukan add, commit, dan push ke GitHub serta PWS.
+
 
 
