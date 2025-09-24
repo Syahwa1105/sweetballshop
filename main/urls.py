@@ -1,5 +1,9 @@
 from django.urls import path
 from main import views
+#TI_4
+from main.views import register
+from main.views import login_user
+from main.views import logout_user
 
 app_name = 'main'
 
@@ -12,4 +16,8 @@ urlpatterns = [
     path('xml/', views.products_xml, name='products_xml'),
     path('json/<uuid:pk>/', views.product_json_by_id, name='product_json_by_id'),
     path('xml/<uuid:pk>/', views.product_xml_by_id, name='product_xml_by_id'),
+    #TI_4
+    path('register/', register, name='register'),
+    path('login/', login_user, name='login'),
+    path('logout/', logout_user, name='logout'),
 ]
