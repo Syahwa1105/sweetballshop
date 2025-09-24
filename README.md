@@ -137,13 +137,13 @@ Django mengimplementasikan nya:
 
 **3.Apa saja kelebihan dan kekurangan session dan cookies dalam konteks menyimpan state di aplikasi web?**
 
-**Session: 
+**Session:**
 
 - Kelebihan: data disimpan di server, sehingga lebih aman untuk menyimpan informasi penting. Kapasitas juga lebih besar dibanding cookies.
 
 - Kekurangan: membutuhkan ruang penyimpanan di server, sehingga semakin banyak pengguna bisa menambah beban server.
 
-**Cookies: 
+**Cookies:**
 
 - Kelebihan: mudah digunakan, bisa menyimpan data kecil langsung di browser, dan data dapat bertahan walaupun browser ditutup.
 
