@@ -166,27 +166,35 @@ Dengan fitur-fitur tersebut, risiko dari penggunaan cookies bisa diminimalisir.
 **5.Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
 
 **Membuat fungsi dan form registrasi**
+
 Pertama, saya menambahkan fungsi register di views.py dengan memanfaatkan UserCreationForm bawaan Django. Fungsi ini memungkinkan pengguna untuk membuat akun baru. Jika berhasil, pengguna akan langsung diarahkan ke halaman login. Saya juga menambahkan template register.html untuk menampilkan form registrasi.
 
 **Membuat fungsi login dan logout**
+
 Kedua, saya menambahkan fungsi login_user yang menggunakan AuthenticationForm. Jika login berhasil, pengguna akan diarahkan ke halaman utama. Saya juga membuat fungsi logout_user yang akan menghapus sesi login dan menghapus cookie last_login.
 
 **Menambahkan proteksi dengan login_required**
+
 Agar halaman utama (show_main) hanya bisa diakses oleh pengguna yang sudah login, saya menambahkan decorator @login_required(login_url='/login'). Hal ini juga saya terapkan di beberapa fungsi lain seperti add_product dan product_detail.
 
 **Menghubungkan model Product dengan User**
+
 Setelah autentikasi dasar selesai, saya baru menambahkan field user = models.ForeignKey(User, on_delete=models.CASCADE, null=True) di dalam model Product. Dengan cara ini, setiap produk yang dibuat akan tercatat siapa pemiliknya.
 
 **Migrasi database**
+
 Saya menjalankan python manage.py makemigrations dan python manage.py migrate untuk memperbarui struktur database sesuai dengan perubahan model.
 
 **Menghubungkan produk dengan user saat ditambahkan**
+
 Pada fungsi add_product, saya memodifikasi kode agar produk baru otomatis mencatat pengguna yang sedang login (request.user) sebagai author.
 
 **Menampilkan informasi user dan cookie last_login**
+
 Di show_main, saya menambahkan context baru berupa request.user.username serta cookie last_login. Informasi ini saya tampilkan di halaman utama, sehingga pengguna bisa melihat siapa yang sedang login dan kapan terakhir kali login.
 
 **Menampilkan author di halaman detail produk**
+
 Pada template product_detail.html, saya menambahkan kode untuk menampilkan author dari produk. Jika tidak ada, maka ditampilkan “Anonymous”.
 
 **Membuat dua akun dengan dummy data**
@@ -199,6 +207,7 @@ Saya membuat dua akun pengguna dan masing-masing saya isi dengan tiga produk dum
   <img width="1920" height="1080" alt="Screenshot (57)" src="https://github.com/user-attachments/assets/e6a674f6-beff-40c4-a526-b8e4815764b7" />
 
 **Commit dan push ke GitHub serta PWS**
+
 Setelah semua berfungsi dengan baik, saya melakukan add, commit, dan push ke GitHub serta PWS.
 
 
