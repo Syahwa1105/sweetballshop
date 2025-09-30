@@ -240,29 +240,29 @@ Bagian terdalam yang berisi teks, gambar, atau elemen lain.
 **- Padding**
 Ruang di dalam elemen, yaitu jarak antara content dan border. Padding memberi “napas” pada isi elemen.
 
-'''css
+```css
 .card {
   padding: 16px;
 }
-'''
+
 
 **- Border**
 Garis yang mengelilingi padding dan content. Border bisa memiliki warna, ketebalan, atau gaya tertentu (solid, dashed, dotted).
 
-'''css
+```css
 .card {
   border: 2px solid #ccc;
 }
-'''
+
 
 **- Margin**
 Ruang di luar border yang memisahkan elemen dari elemen lain di sekitarnya.
 
-'''css
+```css
 .card {
   margin: 20px;
 }
-'''
+
 
 **Kapan digunakan?**
 - Pakai padding untuk memberi ruang di dalam elemen agar isi lebih mudah dibaca.
@@ -271,6 +271,7 @@ Ruang di luar border yang memisahkan elemen dari elemen lain di sekitarnya.
 
 **4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!**
 CSS menyediakan dua sistem utama untuk mengatur tata letak modern: Flexbox dan Grid.
+
 **a. Flexbox (Flexible Box)**
 - Dirancang untuk layout satu dimensi (baris atau kolom).
 - Memudahkan pengaturan distribusi ruang antar elemen dan alignment.
