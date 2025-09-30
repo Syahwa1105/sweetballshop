@@ -146,14 +146,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if PRODUCTION:
-    # di server PWS → ambil dari collectstatic
-    STATIC_ROOT = BASE_DIR / "staticfiles"
-else:
-    # di local → ambil langsung dari folder static/
-    STATICFILES_DIRS = [
-        BASE_DIR / "static",
-    ]
+# folder tempat kamu taruh file statis saat develop (misalnya static/css, static/image, dll)
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# folder hasil collectstatic → ini yang dibaca di server (PWS)
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
