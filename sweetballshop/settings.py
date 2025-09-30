@@ -53,6 +53,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # Tambahkan WhiteNoise di bawah SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -153,6 +155,9 @@ STATICFILES_DIRS = [
 
 # folder hasil collectstatic → ini yang dibaca di server (PWS)
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# WhiteNoise akan compress & cache static files untuk performa optimal
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 # Default primary key field type
