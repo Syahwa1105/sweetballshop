@@ -213,6 +213,7 @@ Setelah semua berfungsi dengan baik, saya melakukan add, commit, dan push ke Git
 ## **Tugas 5 PBP - Desain Web menggunakan HTML, CSS dan Framework CSS**
 
 **1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!**
+
 Browser menentukan gaya yang berlaku dengan aturan specificity. Urutan prioritas dari yang tertinggi ke terendah:
 1. Inline style (mis. `<div style="...">`) — prioritas tertinggi.  
 2. ID selector (`#my-id`) — lebih spesifik daripada class.  
@@ -223,6 +224,7 @@ Browser menentukan gaya yang berlaku dengan aturan specificity. Urutan prioritas
 Jika dua selector memiliki specificity yang sama, aturan yang muncul paling akhir di stylesheet atau yang dimuat paling akhir itu yang berlaku. Untuk memaksa aturan tertentu, hindari menggunakan!important kecuali benar-benar perlu—karena itu menyulitkan pemeliharaan.
 
 **2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!**
+
 Responsive design memungkinkan antarmuka menyesuaikan ukuran dan orientasi layar (desktop, tablet, smartphone). Manfaatnya seperti :
 - UX konsisten pada berbagai perangkat.
 - Aksesibilitas lebih baik (pengguna mobile jadi mudah berinteraksi).
@@ -233,7 +235,9 @@ Contoh nya adalah :
 - Kurang responsive: situs lama (terutama beberapa situs instansi publik) yang masih fixed-width seperti harus di-zoom/geser manual di smartphone.
 
 **3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!**
+
 Dalam CSS, setiap elemen dianggap sebagai sebuah kotak yang disebut box model. Box model terdiri dari empat lapisan utama: content, padding, border, margin.
+
 **- Content**
 Bagian terdalam yang berisi teks, gambar, atau elemen lain.
 
@@ -244,6 +248,7 @@ Ruang di dalam elemen, yaitu jarak antara content dan border. Padding memberi �
 .card {
   padding: 16px;
 }
+```
 
 
 **- Border**
@@ -253,6 +258,7 @@ Garis yang mengelilingi padding dan content. Border bisa memiliki warna, ketebal
 .card {
   border: 2px solid #ccc;
 }
+```
 
 
 **- Margin**
@@ -262,6 +268,7 @@ Ruang di luar border yang memisahkan elemen dari elemen lain di sekitarnya.
 .card {
   margin: 20px;
 }
+```
 
 
 **Kapan digunakan?**
@@ -270,6 +277,7 @@ Ruang di luar border yang memisahkan elemen dari elemen lain di sekitarnya.
 - Pakai margin untuk mengatur jarak antar elemen dalam layout misalnya jarak antar card.
 
 **4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!**
+
 CSS menyediakan dua sistem utama untuk mengatur tata letak modern: Flexbox dan Grid.
 
 **a. Flexbox (Flexible Box)**
@@ -285,6 +293,7 @@ CSS menyediakan dua sistem utama untuk mengatur tata letak modern: Flexbox dan G
 jadi kesimpulan nya gunakan Flexbox jika hanya ingin mengatur posisi item dalam baris/kolom dan gunakan Grid jika butuh layout besar dengan struktur baris dan kolom yang konsisten.
 
 **5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!**
+
 Dalam mengimplementasikan checklist, saya menyesuaikan alur kerja dengan kebutuhan aplikasi saya (SweetBallShop) Berikut langkah-langkah yang saya lakukan:
 
 1. Menambahkan Tailwind CSS melalui CDN di file base.html agar styling lebih konsisten dan responsif.
