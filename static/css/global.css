@@ -1,0 +1,165 @@
+```css
+/* ========== Global CSS untuk SweetBallShop ========== */
+
+/* Reset kecil agar semua elemen form terlihat konsisten */
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Style form agar lebih rapi */
+.form-rounded input,
+.form-rounded select,
+.form-rounded textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.form-rounded input:focus,
+.form-rounded select:focus,
+.form-rounded textarea:focus {
+  outline: none;
+  border-color: #FF7BAC;               /* fokus warna pink */
+  box-shadow: 0 0 0 3px rgba(255, 123, 172, 0.2);
+}
+
+/* Style input untuk Login & Register */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #FF7BAC;               /* warna pink saat fokus */
+  box-shadow: 0 0 0 3px rgba(255, 123, 172, 0.2);
+}
+
+/* Tombol umum pastel → default kotak */
+.btn-sweet {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;               /* kotak rounded */
+  font-weight: 500;
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;       /* garis border default */
+}
+
+/* Variasi tombol pastel dengan border */
+.btn-pink {
+  border-color: #FF7BAC;
+  background-color: transparent;
+  color: #9D174D;
+}
+.btn-pink:hover {
+  background-color: #FF7BAC;
+  color: #fff;
+}
+
+.btn-peach {
+  border-color: #FFD27F;
+  background-color: transparent;
+  color: #B45309;
+}
+.btn-peach:hover {
+  background-color: #FFD27F;
+  color: #2B2B2B;
+}
+
+.btn-mint {
+  border-color: #9FE2BF;
+  background-color: transparent;
+  color: #047857;
+}
+.btn-mint:hover {
+  background-color: #9FE2BF;
+  color: #2B2B2B;
+}
+
+/* Card produk tambahan */
+.card-soft {
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: #fff;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card-soft:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Navbar shadow */
+.nav-shadow {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+/* Utility kecil */
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* === Tombol Navbar === */
+.nav-btn {
+  padding: 0.4rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+/* Home → peach */
+.nav-btn-home {
+  background-color: #FFD27F !important;
+  border: 2px solid #FBBF24 !important;
+  color: #2B2B2B !important;
+}
+.nav-btn-home:hover {
+  background-color: #FBBF24 !important;
+  color: #fff !important;
+}
+
+/* Logout → merah */
+.nav-btn-logout {
+  background-color: #F87171 !important;
+  border: 2px solid #DC2626 !important;
+  color: #fff !important;
+}
+.nav-btn-logout:hover {
+  background-color: #DC2626 !important;
+  color: #fff !important;
+}
+
+/* Shoes */
+a[href*="category=shoes"]:hover {
+  background-color: #93C5FD; /* biru muda */
+  color: white;
+}
+
+/* Clothes */
+a[href*="category=clothes"]:hover {
+  background-color: #F9A8D4; /* pink muda */
+  color: white;
+}
+
+/* Accessories */
+a[href*="category=accessories"]:hover {
+  background-color: #6EE7B7; /* mint */
+  color: #2B2B2B;
+}
+
+/* Limited Edition */
+a[href*="category=limited"]:hover {
+  background-color: #FCD34D; /* peach/kuning */
+  color: #2B2B2B;
+}

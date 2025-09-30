@@ -5,36 +5,60 @@
 {% endblock meta %}
 
 {% block content %}
-<header>
-    <h1>SweetBall Shop</h1>
-    <p>NPM: 2406437533 | Nama: Qoriana Syahwa Maharani | Kelas: PBP-B</p>
-    <hr>
-</header>
+<div class="max-w-5xl mx-auto p-6">
+  <!-- Header -->
+  <header class="mb-6 text-center">
+    <h1 class="text-3xl font-bold text-text-dark">SweetBall Shop</h1>
+    <p class="text-sm text-gray-500">
+      NPM: 2406437533 | Nama: Qoriana Syahwa Maharani | Kelas: PBP-B
+    </p>
+  </header>
 
-<h2>Detail Product</h2>
+  <!-- Card Product Detail -->
+  <div class="card-soft p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+    
+    <!-- Thumbnail -->
+    <div class="flex items-center justify-center">
+      {% if product.thumbnail %}
+        <img src="{{ product.thumbnail }}" alt="{{ product.name }}" 
+             class="rounded-lg max-h-96 object-contain">
+      {% else %}
+        <div class="w-full h-64 flex items-center justify-center bg-gray-100 text-gray-400 rounded-lg">
+          No Image
+        </div>
+      {% endif %}
+    </div>
 
-<p><strong>Name:</strong> {{ product.name }}</p>
-<p><strong>Price:</strong> {{ product.price }}</p>
-<p><strong>Description:</strong> {{ product.description }}</p>
-<p><strong>Category:</strong> {{ product.category }}</p>
-<p><strong>Featured:</strong> {{ product.is_featured }}</p>
+    <!-- Info Product -->
+    <div class="flex flex-col gap-4">
+      <h2 class="text-2xl font-bold text-text-dark">{{ product.name }}</h2>
+      <p class="text-xl text-pink-600 font-semibold">Rp {{ product.price }}</p>
 
-{% if product.thumbnail %}
-<p><strong>Thumbnail:</strong></p>
-<img src="{{ product.thumbnail }}" alt="{{ product.name }}" style="max-width:300px; height:auto;">
-{% endif %}
+      <p class="text-gray-700">{{ product.description }}</p>
 
-{% if product.user %}
-<p><strong>Author:</strong> {{ product.user.username }}</p>
-{% else %}
-<p><strong>Author:</strong> Anonymous</p>
-{% endif %}
+      <div class="text-sm text-gray-500 space-y-1">
+        <p><span class="font-semibold">Category:</span> {{ product.category }}</p>
+        <p><span class="font-semibold">Featured:</span> {{ product.is_featured|yesno:"Yes,No" }}</p>
+        <p>
+          <span class="font-semibold">Author:</span> 
+          {% if product.user %}
+            {{ product.user.username }}
+          {% else %}
+            Anonymous
+          {% endif %}
+        </p>
+      </div>
 
-<hr>
-<a href="{% url 'main:show_main' %}">⬅ Back to Products</a>
+      <!-- Back button -->
+      <div class="mt-4">
+        <a href="{% url 'main:show_main' %}" class="btn-sweet btn-pink">← Back to Products</a>
+      </div>
+    </div>
+  </div>
 
-<footer>
-    <hr>
-    <p>© 2025 SweetBall Shop</p>
-</footer>
+  <!-- Footer -->
+  <footer class="mt-8 text-center text-gray-400 text-sm">
+    © 2025 SweetBall Shop
+  </footer>
+</div>
 {% endblock content %}

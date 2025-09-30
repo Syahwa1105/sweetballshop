@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block meta %}<title>Delete Product - SweetBall Shop</title>{% endblock meta %}
+
+{% block content %}
+{% include "navbar.html" %}
+
+<div class="max-w-lg mx-auto p-6 text-center">
+  <h2 class="text-xl font-semibold">Yakin hapus produk "{{ product.name }}"?</h2>
+  <form method="post" class="mt-4">
+    {% csrf_token %}
+    <button type="submit" class="btn-sweet bg-red-500 text-white">Ya, Hapus</button>
+    <a href="{% url 'main:product_detail' product.pk %}" class="ml-3 btn-sweet btn-mint">Batal</a>
+  </form>
+</div>
+{% endblock content %}

@@ -20,4 +20,9 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
+
+    #TI_5
+    path('products/<uuid:pk>/edit/', views.edit_product, name='edit_product'),
+    path('products/<uuid:pk>/delete/', views.delete_product, name='delete_product'),
+
 ]

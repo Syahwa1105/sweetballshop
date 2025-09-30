@@ -18,21 +18,26 @@ from .forms import ProductForm
 
 @login_required(login_url='/login') #TI_4
 def show_main(request): # isi dari sebelum nya diubah untuk TI_4
-    filter_type = request.GET.get("filter", "all")  # default 'all'
+    filter_type = request.GET.get("filter", "all") 
+    category = request.GET.get("category", None)    
 
     if filter_type == "all":
         products = Product.objects.all()
     else:
         products = Product.objects.filter(user=request.user)
 
+    if category:
+        products = products.filter(category=category)  
+
     context = {
         "npm": "2406437533",
-        "nama": request.user.username,   # username dari user yang login
+        "nama": request.user.username,   
         "kelas": "PBP-B",
         "products": products,
         "last_login": request.COOKIES.get('last_login', 'Never'),
     }
     return render(request, "main.html", context)
+
 
 #TI_3 dan diubah ke karena TI_4
 @login_required(login_url='/login')
@@ -116,3 +121,35 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
+#TI5
+@login_required(login_url='/login')
+def edit_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+
+    # hanya pemilik product yang boleh edit
+    if product.user != request.user:
+        return HttpResponse("Unauthorized", status=403)
+
+    form = ProductForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == 'POST':
+        form.save()
+        return redirect('main:product_detail', pk=pk)
+
+    return render(request, 'product_form.html', {'form': form, 'product': product})
+
+
+@login_required(login_url='/login')
+def delete_product(request, pk):
+    product = get_object_or_404(Product, pk=pk)
+
+    # hanya pemilik product yang boleh hapus
+    if product.user != request.user:
+        return HttpResponse("Unauthorized", status=403)
+
+    if request.method == 'POST':
+        product.delete()
+        return redirect('main:show_main')
+
+    # konfirmasi sebelum hapus
+    return render(request, 'product_confirm_delete.html', {'product': product})

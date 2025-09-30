@@ -1,0 +1,41 @@
+<article class="card-soft overflow-hidden">
+  <!-- Foto produk di atas -->
+  <img src="{{ p.thumbnail }}"
+       alt="{{ p.name }}"
+       class="w-full h-40 object-cover">
+
+  <div class="p-4">
+    <h3 class="text-lg font-semibold text-text-dark">{{ p.name }}</h3>
+
+    <p class="text-sm text-gray-600 line-clamp-2 mt-1">
+      {{ p.description|truncatewords:15 }}
+    </p>
+
+    <div class="mt-3 flex items-center justify-between">
+      <span class="text-sm font-medium text-sweet-peach">
+        Rp {{ p.price }}
+      </span>
+
+      <div class="flex gap-2">
+        <a href="{% url 'main:product_detail' p.pk %}"
+           class="btn-sweet btn-mint text-xs">Detail</a>
+
+        {% if user.is_authenticated and p.user == user %}
+          <a href="{% url 'main:edit_product' p.pk %}"
+             class="btn-sweet btn-pink text-xs">Edit</a>
+
+          <form action="{% url 'main:delete_product' p.pk %}"
+                method="POST"
+                onsubmit="return confirm('Hapus produk ini?')"
+                class="inline">
+            {% csrf_token %}
+            <button type="submit"
+                    class="btn-sweet bg-red-50 text-red-500 text-xs">
+              Hapus
+            </button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</article>
