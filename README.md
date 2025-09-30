@@ -214,11 +214,11 @@ Setelah semua berfungsi dengan baik, saya melakukan add, commit, dan push ke Git
 
 **1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!**
 Browser menentukan gaya yang berlaku dengan aturan specificity. Urutan prioritas dari yang tertinggi ke terendah:
-1. Inline style (mis. <div style="...">) — prioritas tertinggi.
-2. ID selector (#my-id) — lebih spesifik daripada class.
-3. Class, attribute, pseudo-class (.my-class, [type="text"], :hover).
-4. Element selector (div, p, h1) dan pseudo-element (::before).
-5. User agent stylesheet (default browser) — paling rendah.
+1. Inline style (mis. `<div style="...">`) — prioritas tertinggi.  
+2. ID selector (`#my-id`) — lebih spesifik daripada class.  
+3. Class, attribute, pseudo-class (`.my-class`, `[type="text"]`, `:hover`). 
+4. Element selector (`div`, `p`, `h1`) dan pseudo-element (`::before`).  
+5. User agent stylesheet (default browser) — paling rendah.  
 
 Jika dua selector memiliki specificity yang sama, aturan yang muncul paling akhir di stylesheet atau yang dimuat paling akhir itu yang berlaku. Untuk memaksa aturan tertentu, hindari menggunakan!important kecuali benar-benar perlu—karena itu menyulitkan pemeliharaan.
 
@@ -240,25 +240,29 @@ Bagian terdalam yang berisi teks, gambar, atau elemen lain.
 **- Padding**
 Ruang di dalam elemen, yaitu jarak antara content dan border. Padding memberi “napas” pada isi elemen.
 
+'''css
 .card {
   padding: 16px;
 }
-
+'''
 
 **- Border**
 Garis yang mengelilingi padding dan content. Border bisa memiliki warna, ketebalan, atau gaya tertentu (solid, dashed, dotted).
 
+'''css
 .card {
   border: 2px solid #ccc;
 }
-
+'''
 
 **- Margin**
 Ruang di luar border yang memisahkan elemen dari elemen lain di sekitarnya.
 
+'''css
 .card {
   margin: 20px;
 }
+'''
 
 **Kapan digunakan?**
 - Pakai padding untuk memberi ruang di dalam elemen agar isi lebih mudah dibaca.
