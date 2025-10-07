@@ -12,25 +12,16 @@
       Login
     </h1>
 
-    {# Pesan error dari Django messages #}
-    {% if messages %}
-      <ul class="mb-4 text-sm text-red-500 list-disc list-inside">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-
-    <form method="POST" class="space-y-4 form-rounded">
+    <form id="loginForm" method="POST" class="space-y-4 form-rounded">
       {% csrf_token %}
       <div>
         <label class="block text-sm font-semibold text-text-dark mb-1">Username</label>
-        {{ form.username }}
+        <input type="text" name="username" class="border p-2 w-full rounded" required>
       </div>
 
       <div>
         <label class="block text-sm font-semibold text-text-dark mb-1">Password</label>
-        {{ form.password }}
+        <input type="password" name="password" class="border p-2 w-full rounded" required>
       </div>
 
       <button type="submit" class="w-full btn-sweet btn-pink">Login</button>
@@ -45,4 +36,35 @@
     </p>
   </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("loginForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const response = await fetch("{% url 'main:login' %}", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": "{{ csrf_token }}",
+      },
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (result.status === "success") {
+      showToast("Login berhasil! 🎉", "success");
+      setTimeout(() => {
+        window.location.href = "{% url 'main:show_main' %}";
+      }, 1200);
+    } else {
+      showToast(result.message || "Username atau password salah!", "error");
+    }
+  });
+});
+</script>
 {% endblock content %}

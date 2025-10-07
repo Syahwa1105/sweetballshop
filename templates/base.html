@@ -2,33 +2,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {% block meta %}{% endblock meta %}
+  {% block meta %}{% endblock meta %}
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'sweet-pink': '#FF7BAC',
-              'sweet-peach': '#FFD27F',
-              'sweet-mint': '#9FE2BF',
-              'bg-soft': '#FFF8FA',
-              'text-dark': '#2B2B2B'
-            }
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'sweet-pink': '#FF7BAC',
+            'sweet-peach': '#FFD27F',
+            'sweet-mint': '#9FE2BF',
+            'bg-soft': '#FFF8FA',
+            'text-dark': '#2B2B2B'
           }
         }
       }
-    </script>
+    }
+  </script>
 
-    <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
-    {% block extra_head %}{% endblock extra_head %}
+  <link rel="stylesheet" href="{% static 'css/global.css' %}"/>
+  {% block extra_head %}{% endblock extra_head %}
 </head>
+
 <body class="bg-bg-soft text-text-dark">
-    {% block content %}{% endblock content %}
+
+  {% block content %}{% endblock content %}
+
+  <!-- Include komponen Toast -->
+  {% include 'toast.html' %}
+
 </body>
 </html>

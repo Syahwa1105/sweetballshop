@@ -21,7 +21,7 @@
         <a href="{% url 'main:show_main' %}?category=limited" class="nav-btn">Limited Edition</a>
 
         {% if user.is_authenticated %}
-          <a href="{% url 'main:logout' %}" class="nav-btn nav-btn-logout">Logout</a>
+          <button id="logoutBtn" class="nav-btn nav-btn-logout">Logout</button>
         {% else %}
           <a href="{% url 'main:login' %}" class="nav-btn nav-btn-home">Login</a>
           <a href="{% url 'main:register' %}" class="bg-sweet-pink text-white px-3 py-1 rounded-full text-sm hover:opacity-90">
@@ -51,7 +51,7 @@
       <a href="{% url 'main:show_main' %}?category=limited" class="nav-btn block w-fit">Limited Edition</a>
 
       {% if user.is_authenticated %}
-        <a href="{% url 'main:logout' %}" class="nav-btn nav-btn-logout block w-fit">Logout</a>
+        <button id="logoutBtnMobile" class="nav-btn nav-btn-logout block w-fit">Logout</button>
       {% else %}
         <a href="{% url 'main:login' %}" class="nav-btn nav-btn-home block w-fit">Login</a>
         <a href="{% url 'main:register' %}" class="bg-sweet-pink text-white px-3 py-1 rounded-full text-sm block w-fit">
@@ -62,8 +62,36 @@
   </div>
 
   <script>
+    // Mobile menu toggle
     const mb = document.getElementById('mobileBtn');
     const mm = document.getElementById('mobileMenu');
-    mb.addEventListener('click', () => mm.classList.toggle('hidden'));
+    if (mb && mm) mb.addEventListener('click', () => mm.classList.toggle('hidden'));
+
+    // Fungsi logout AJAX 
+    async function handleLogout() {
+      try {
+        const res = await fetch("{% url 'main:logout' %}", {
+          method: "POST",
+          headers: { "X-CSRFToken": "{{ csrf_token }}" },
+        });
+        if (res.ok) {
+          showToast("Logout berhasil!", "info");
+          setTimeout(() => {
+            window.location.href = "{% url 'main:login' %}";
+          }, 1000);
+        } else {
+          showToast("Logout gagal!", "error");
+        }
+      } catch (err) {
+        console.error(err);
+        showToast("Terjadi kesalahan saat logout.", "error");
+      }
+    }
+
+    // Tombol logout desktop & mobile
+    const logoutBtn = document.getElementById("logoutBtn");
+    const logoutBtnMobile = document.getElementById("logoutBtnMobile");
+    if (logoutBtn) logoutBtn.addEventListener("click", handleLogout);
+    if (logoutBtnMobile) logoutBtnMobile.addEventListener("click", handleLogout);
   </script>
 </nav>

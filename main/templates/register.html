@@ -13,15 +13,10 @@
       Register
     </h1>
 
-    {% if messages %}
-      <ul class="mb-4 text-sm text-red-500 list-disc list-inside">
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+    <!-- Tempat muncul pesan AJAX (tetap ada, tapi sekarang dipakai buat state loading aja) -->
+    <div id="ajax-message" class="text-center mb-4"></div>
 
-    <form method="POST" class="space-y-4 form-rounded">
+    <form id="registerForm" method="POST" class="space-y-4 form-rounded">
       {% csrf_token %}
 
       <!-- Username -->
@@ -68,4 +63,39 @@
 
   </div>
 </div>
+
+<!-- === Script AJAX Register === -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registerForm");
+  const messageBox = document.getElementById("ajax-message");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    messageBox.innerHTML = "<p class='text-gray-500 text-sm'>Memproses pendaftaran...</p>";
+
+    const formData = new FormData(form);
+    const response = await fetch("{% url 'main:register' %}", {
+      method: "POST",
+      headers: {
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (data.status === "success") {
+      showToast(data.message, "success");
+      messageBox.innerHTML = `<p class='text-green-600 text-sm font-semibold'>${data.message}</p>`;
+      setTimeout(() => {
+        window.location.href = "{% url 'main:login' %}";
+      }, 1500);
+    } else {
+      showToast(data.message, "error");
+      messageBox.innerHTML = `<p class='text-red-500 text-sm font-semibold'>${data.message}</p>`;
+    }
+  });
+});
+</script>
 {% endblock content %}

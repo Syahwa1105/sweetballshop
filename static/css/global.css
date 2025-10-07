@@ -1,4 +1,4 @@
-```css
+css
 /* ========== Global CSS untuk SweetBallShop ========== */
 
 /* Reset kecil agar semua elemen form terlihat konsisten */
@@ -142,24 +142,68 @@ input[type="password"]:focus {
 
 /* Shoes */
 a[href*="category=shoes"]:hover {
-  background-color: #93C5FD; /* biru muda */
+  background-color: #93C5FD; 
   color: white;
 }
 
 /* Clothes */
 a[href*="category=clothes"]:hover {
-  background-color: #F9A8D4; /* pink muda */
+  background-color: #F9A8D4; 
   color: white;
 }
 
 /* Accessories */
 a[href*="category=accessories"]:hover {
-  background-color: #6EE7B7; /* mint */
+  background-color: #6EE7B7; 
   color: #2B2B2B;
 }
 
 /* Limited Edition */
 a[href*="category=limited"]:hover {
-  background-color: #FCD34D; /* peach/kuning */
+  background-color: #FCD34D; 
   color: #2B2B2B;
+}
+
+
+.card-btn {
+  padding: 0.25rem 0.75rem;        
+  font-size: 0.75rem;              
+  font-weight: 500;                
+  border-radius: 0.5rem;           
+  border: 2px solid transparent;   
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+/* Detail → hijau pastel */
+.card-btn-detail {
+  border-color: #9FE2BF;
+  background-color: transparent;
+  color: #047857;
+}
+.card-btn-detail:hover {
+  background-color: #9FE2BF;
+  color: #2B2B2B;
+}
+
+/* Edit → peach pastel */
+.card-btn-edit {
+  border-color: #FFD27F;
+  background-color: transparent;
+  color: #B45309;
+}
+.card-btn-edit:hover {
+  background-color: #FFD27F;
+  color: #2B2B2B;
+}
+
+/* Hapus → pink pastel */
+.card-btn-delete {
+  border-color: #FF7BAC;
+  background-color: transparent;
+  color: #9D174D;
+}
+.card-btn-delete:hover {
+  background-color: #FF7BAC;
+  color: #fff;
 }
