@@ -211,4 +211,121 @@ Saya membuat dua akun pengguna dan masing-masing saya isi dengan tiga produk dum
 Setelah semua berfungsi dengan baik, saya melakukan add, commit, dan push ke GitHub serta PWS.
 
 
+## **Tugas 5 PBP - Desain Web menggunakan HTML, CSS dan Framework CSS
+
+**1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Browser menentukan gaya yang berlaku dengan aturan specificity. Urutan prioritas dari yang tertinggi ke terendah:
+1. Inline style (mis. <div style="...">) — prioritas tertinggi.
+2. ID selector (#my-id) — lebih spesifik daripada class.
+3. Class, attribute, pseudo-class (.my-class, [type="text"], :hover).
+4. Element selector (div, p, h1) dan pseudo-element (::before).
+5. User agent stylesheet (default browser) — paling rendah.
+
+Jika dua selector memiliki specificity yang sama, aturan yang muncul paling akhir di stylesheet atau yang dimuat paling akhir itu yang berlaku. Untuk memaksa aturan tertentu, hindari menggunakan!important kecuali benar-benar perlu—karena itu menyulitkan pemeliharaan.
+
+**2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+Responsive design memungkinkan antarmuka menyesuaikan ukuran dan orientasi layar (desktop, tablet, smartphone). Manfaatnya seperti :
+- UX konsisten pada berbagai perangkat.
+- Aksesibilitas lebih baik (pengguna mobile jadi mudah berinteraksi).
+- SEO & performa: mesin pencari dan metrik pengguna cenderung menghargai situs mobile-friendly.
+
+Contoh nya adalah : 
+- Sudah responsive: Google Search, Twitter seperti layout, typography, dan interaksi menyesuaikan layar.
+- Kurang responsive: situs lama (terutama beberapa situs instansi publik) yang masih fixed-width seperti harus di-zoom/geser manual di smartphone.
+
+**3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Dalam CSS, setiap elemen dianggap sebagai sebuah kotak yang disebut box model. Box model terdiri dari empat lapisan utama: content, padding, border, margin.
+**- Content
+Bagian terdalam yang berisi teks, gambar, atau elemen lain.
+
+**- Padding
+Ruang di dalam elemen, yaitu jarak antara content dan border. Padding memberi “napas” pada isi elemen.
+
+.card {
+  padding: 16px;
+}
+
+
+**- Border
+Garis yang mengelilingi padding dan content. Border bisa memiliki warna, ketebalan, atau gaya tertentu (solid, dashed, dotted).
+
+.card {
+  border: 2px solid #ccc;
+}
+
+
+**- Margin
+Ruang di luar border yang memisahkan elemen dari elemen lain di sekitarnya.
+
+.card {
+  margin: 20px;
+}
+
+**Kapan digunakan?
+- Pakai padding untuk memberi ruang di dalam elemen agar isi lebih mudah dibaca.
+- Pakai border untuk membedakan satu elemen dengan elemen lain misalnya card produk.
+- Pakai margin untuk mengatur jarak antar elemen dalam layout misalnya jarak antar card.
+
+**4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+CSS menyediakan dua sistem utama untuk mengatur tata letak modern: Flexbox dan Grid.
+**a. Flexbox (Flexible Box)
+- Dirancang untuk layout satu dimensi (baris atau kolom).
+- Memudahkan pengaturan distribusi ruang antar elemen dan alignment.
+- Cocok untuk navbar, daftar tombol, form input berjejer, atau layout yang linear.
+
+**b. Grid Layout
+- Dirancang untuk layout dua dimensi (baris dan kolom).
+- Memberi kontrol penuh pada struktur halaman.
+- Cocok untuk galeri produk, dashboard, atau tampilan dengan kolom-kolom tetap.
+
+jadi kesimpulan nya gunakan Flexbox jika hanya ingin mengatur posisi item dalam baris/kolom dan gunakan Grid jika butuh layout besar dengan struktur baris dan kolom yang konsisten.
+
+**5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+Dalam mengimplementasikan checklist, saya menyesuaikan alur kerja dengan kebutuhan aplikasi saya (SweetBallShop) Berikut langkah-langkah yang saya lakukan:
+
+1. Menambahkan Tailwind CSS melalui CDN di file base.html agar styling lebih konsisten dan responsif.
+2. Membuat navbar yang sederhana dan responsif untuk navigasi halaman utama.
+3. Membangun tampilan daftar produk menggunakan komponen card yang reusable, kemudian meng-include file product_card.html di halaman utama.
+4. Mengatur form produk (create & edit) menggunakan ModelForm di forms.py, lalu menghubungkannya dengan views.py.
+5. Menambahkan fitur delete produk menggunakan metode POST dengan halaman konfirmasi sederhana.
+6. Membuat tampilan empty state dengan gambar no-product.png agar halaman tetap informatif meskipun belum ada data.
+7. Testing aplikasi di lokal, lalu melakukan commit dan push ke GitHub serta PWS untuk memastikan bisa diakses secara online.
+
+
+## **Tugas 6 PBP - Javascript dan AJAX**
+
+**1. Apa perbedaan antara synchronous request dan asynchronous request **
+
+Pada *synchronous request*, proses komunikasi antara client dan server berjalan secara berurutan. Browser akan menunggu hingga server mengirimkan respon sebelum bisa melakukan tindakan lain. Akibatnya, jika proses di server memakan waktu lama, tampilan halaman bisa terasa lambat atau bahkan “terhenti sementara”.
+Sedangkan pada *asynchronous request*, permintaan ke server dilakukan di latar belakang tanpa harus memuat ulang seluruh halaman. Browser tetap bisa berinteraksi dengan pengguna sambil menunggu respon dari server. AJAX menggunakan konsep ini sehingga data bisa diperbarui sebagian tanpa perlu *refresh* halaman.
+
+**2. Bagaimana AJAX bekerja di Django (alur request–response)?**
+
+Ketika pengguna melakukan aksi seperti menambah atau menghapus data, JavaScript akan mengirimkan *request* ke server menggunakan `fetch()` atau `XMLHttpRequest`. Django kemudian menerima permintaan tersebut melalui *view* yang disiapkan khusus untuk menangani AJAX, biasanya mengembalikan respon dalam format JSON.
+Respon JSON ini dikirim kembali ke JavaScript di sisi client, kemudian hasilnya diolah untuk memperbarui tampilan halaman tanpa melakukan *reload*. Dengan cara ini, Django tetap berfungsi sebagai pengatur logika dan data, sementara interaksi pengguna ditangani secara dinamis oleh JavaScript.
+
+**3. Apa keuntungan menggunakan AJAX dibandingkan render biasa di Django?**
+
+Beberapa keuntungan utama penggunaan AJAX antara lain:
+
+* **Efisiensi waktu dan data:** hanya bagian tertentu dari halaman yang diperbarui, bukan keseluruhan halaman.
+* **Pengalaman pengguna lebih halus:** interaksi terasa cepat dan responsif tanpa perlu *reload* penuh.
+* **Pemisahan tanggung jawab yang jelas:** Django fokus pada logika backend, sedangkan JavaScript menangani tampilan interaktif di frontend.
+* **Kemudahan integrasi fitur dinamis:** seperti *modal form*, *toast notification*, atau *live refresh* data, yang sulit dicapai dengan render tradisional.
+
+**4. Bagaimana cara memastikan keamanan saat menggunakan AJAX untuk fitur Login dan Register di Django?**
+
+Untuk menjaga keamanan, beberapa langkah penting perlu diterapkan:
+
+* **Gunakan CSRF Token:** Django menyediakan mekanisme `csrftoken` yang harus dikirim bersama setiap *POST request* untuk mencegah *Cross-Site Request Forgery*.
+* **Validasi input di server:** meskipun validasi juga dilakukan di sisi client, Django harus tetap memverifikasi data di sisi server agar tidak mudah diserang manipulasi.
+* **Gunakan HTTPS:** semua komunikasi antara client dan server sebaiknya terenkripsi agar data sensitif seperti kata sandi tidak bocor.
+* **Batasi respon dari server:** hindari menampilkan pesan error yang terlalu detail pada respon AJAX, agar tidak memberikan petunjuk berlebih kepada pihak yang tidak berwenang.
+
+**5. Bagaimana AJAX mempengaruhi pengalaman pengguna (User Experience) pada website?**
+
+AJAX secara signifikan meningkatkan *user experience* karena membuat interaksi di halaman terasa lebih cepat dan natural. Pengguna tidak perlu menunggu proses *reload* setiap kali menambah, mengedit, atau menghapus data. Selain itu, fitur seperti *loading state*, *toast notification*, dan *modal form* memberikan umpan balik langsung yang membantu pengguna memahami apa yang sedang terjadi.
+Secara keseluruhan, AJAX membuat aplikasi web terasa lebih responsif, modern, dan nyaman digunakan.
+
+
 
