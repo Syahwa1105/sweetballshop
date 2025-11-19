@@ -9,6 +9,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core import serializers
 from .models import Product
 from .forms import ProductForm
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.contrib.auth.models import User
+from django.http import JsonResponse
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -246,3 +250,95 @@ def delete_product_ajax(request, pk):
         return JsonResponse({"status": "success", "message": "Produk berhasil dihapus!"})
 
     return JsonResponse({"status": "error", "message": "Invalid request"}, status=400)
+
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method != "POST":
+        return JsonResponse(
+            {"status": False, "message": "Invalid method"},
+            status=400,
+        )
+
+    try:
+        data = request.POST 
+        username = data.get("username", "").strip()
+        if not username:
+            return JsonResponse(
+                {"status": False, "message": "Missing username"},
+                status=400,
+            )
+
+        try:
+            user = User.objects.get(username=username)
+        except User.DoesNotExist:
+            return JsonResponse(
+                {"status": False, "message": "User not found"},
+                status=400,
+            )
+
+
+        name = data.get("name", "").strip()
+        price_raw = data.get("price", "").strip()
+        description = data.get("description", "").strip()
+        thumbnail = data.get("thumbnail", "").strip()
+        category = data.get("category", "").strip()
+        is_featured_str = data.get("is_featured", "false")
+
+        if not name or not price_raw:
+            return JsonResponse(
+                {"status": False, "message": "Name dan price wajib diisi"},
+                status=400,
+            )
+
+        try:
+            price = int(price_raw)
+        except ValueError:
+            return JsonResponse(
+                {"status": False, "message": "Price harus berupa angka"},
+                status=400,
+            )
+
+        product = Product.objects.create(
+            user=user,
+            name=name,
+            price=price,
+            description=description or "",
+            thumbnail=thumbnail or "",
+            category=category or "shoes",
+            is_featured=is_featured_str.lower() == "true",
+        )
+
+        return JsonResponse(
+            {
+                "status": True,
+                "message": "Product berhasil dibuat!",
+                "id": str(product.id),
+            }
+        )
+
+    except Exception as e:
+        return JsonResponse(
+            {
+                "status": False,
+                "message": f"Server error: {str(e)}",
+            },
+            status=500,
+        )
+
+@csrf_exempt
+def flutter_logout(request):
+    if request.method != "POST":
+        return JsonResponse({"status": False, "message": "Invalid method"}, status=400)
+
+    if request.user.is_authenticated:
+        username = request.user.username
+    else:
+        username = ""
+
+    logout(request)
+
+    return JsonResponse({
+        "status": True,
+        "username": username,
+        "message": "Logged out successfully!"
+    })

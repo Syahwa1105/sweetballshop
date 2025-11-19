@@ -22,4 +22,9 @@ urlpatterns = [
     # CRUD Product (AJAX only)
     path('products/<uuid:pk>/edit/', views.edit_product, name='edit_product'),
     path('products/<uuid:pk>/delete/ajax/', views.delete_product_ajax, name='delete_product_ajax'),
+
+    path('products/create-flutter/', views.create_product_flutter, name='create_product_flutter'),
+    path('auth/logout/flutter/', views.flutter_logout, name='flutter_logout'),
+
+
 ]
